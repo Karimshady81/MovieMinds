@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("../partials/head.ejs") %>
+<body>
+    <%- include("../partials/nav.ejs") %>
+    <!-- ----------------------------------FILTER SECTION ----------------------------------->
+    <div class="filter-section">
+        <h2>Films</h2>
+        <!-- AN IDEA THAT WILL BE DONE LATER -->
+        <!-- <div class="filter-options">
+            <section class="filters">
+                <div>
+                    <label>
+                        Decade
+                        <i class="fa-solid fa-angle-down"></i>
+                    </label>
+                </div>
+            </section>
+            <section class="filters">
+                <div>
+                    <label>
+                        Genre
+                        <i class="fa-solid fa-angle-down"></i>
+                    </label>
+                </div>
+            </section>
+            <section class="filters">
+                <div>
+                    <label>
+                        Service
+                        <i class="fa-solid fa-angle-down"></i>
+                    </label>
+                </div>
+            </section>
+            <section class="filters">
+                <div>
+                    <label>
+                        Sort By
+                        <i class="fa-solid fa-angle-down"></i>
+                    </label>
+                </div>
+            </section>
+        </div> -->
+    </div>
+
+    <!-- ----------------------------------TOTAL FILMS SECTION ----------------------------------->
+    <div class="total-films">
+        <p>There are 971,025 Films</p>
+    </div>
+    
+    <!-- ----------------------------------FILMS SECTION ----------------------------------------->
+    <div class="container">
+        <div class="grid">
+            <% films.forEach(film => { %>
+                <div class="movieBanner">
+                    <a href="/films/ <%= film.id %>">
+                    <div class="movieFront">
+                        <img src="https://image.tmdb.org/t/p/w500<%= film.poster_path %>" alt="<%= film.title %>">
+                        <p class="title"><%= film.title %></p>
+                    </div>
+                    <div class="movieBack">
+                        <h1><%= film.title %></h1>
+                        <p><span>Release Date: </span><%= film.release_date %></p>
+                        <p><span>Rating: </span><%= Math.round(film.vote_average * 10) / 10 %> / 10</p>
+                    </div>
+                    </a>
+                </div>
+            <% }) %>
+        </div>
+        <div class="pagination">
+            <% if (currentPage > 1) { %>
+                <!-- Previous button -->
+                <a href="?page=<%= currentPage - 1 %>" class="button">Previous</a>
+            <% } %>       
+                <!-- Next button -->
+                <a href="?page=<%= currentPage + 1 %>" class="button">Next</a>
+        </div>        
+    </div>
+     
+    <%- include("../partials/footer.ejs") %>   
+</body>
+</html>

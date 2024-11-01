@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("../partials/Head.ejs") %>
+<body>
+    <%- include("../partials/nav.ejs") %>
+    <!-- Clicked Movie -->
+    <div class="filmContainer">
+        <!-- Movie Poster Section -->
+        <div class="moviePoster">
+            <img src="https://image.tmdb.org/t/p/w500<%= movie.poster_path %>" alt="<%= movie.title %>">
+        </div>
+        <!-- Movie Info Section -->
+        <div class="movieInfo">
+            <h1> <%= movie.title %> </h1>
+            <p><span>Release Year: </span> <%= movie.release_date  %></p>
+            <p><span>Directed By: </span> <%= director %></p>
+            <p class="description"> <%= movie.overview %></p>
+            <div class="ratesContainer">
+              <p><span>Rating: </span><%= Math.round(movie.vote_average * 10) / 10 %> / 10</p>
+              <!-- If signed in show the rate box -->
+              <div class="reviewContainer2">
+                <% if (user) { %> 
+                  <div class="movie-panel">
+                    <!-- The actions the user can take (Watched,Liked,Add to watchlist) -->
+                    <div class="actions">
+                        <input type="hidden" id="movieID" value="<%= movieID %>">
+                          <% if (userRating && userRating.watched) { %>
+                            <!-- If watched, show Watched button -->
+                            <button id="watchedBtn" class="watched action-btn" style="color: hsl(36, 80%, 58%);" onclick="removeWatched()">
+                                <i class="fa fa-eye"></i> Watched
+                            </button>
+                          <% } else { %>
+                            <!-- If not watched, show Watch button -->
+                            <button id="watchBtn" class="watch action-btn" onclick="toggleWatched()">
+                                <i class="fa fa-eye"></i> Watch
+                            </button>
+                          <% } %>
+
+                          <% if (userRating && userRating.liked) { %>
+                            <!-- If watched, show Watched button -->
+                            <button id="likedBtn" class="liked action-btn" style="color: hsl(36, 80%, 58%);" onclick="removeLiked()">
+                                <i class="fa fa-heart"></i> Liked
+                            </button>
+                          <% } else { %>
+                            <!-- If not watched, show Watch button -->
+                            <button id="likeBtn" class="like action-btn" onclick="toggleLiked()">
+                                <i class="fa fa-heart"></i> Like
+                            </button>
+                          <% } %>
+
+                          <% if (userRating && userRating.watchlist) { %>
+                            <!-- If watched, show Watched button -->
+                            <button id="watchedlistBtn" class="watchedlist action-btn" onclick="removeAddedList()">
+                                <i class="fa-solid fa-check" style="color: #63E6BE;"></i> Watchlist
+                            </button>
+                          <% } else { %>
+                            <!-- If not watched, show Watch button -->
+                            <button id="watchlistBtn" class="watch action-btn" onclick="toggleAddedList()">
+                                <i class="fa fa-plus"></i> Watchlist
+                            </button>
+                          <% } %>
+                    </div>
+
+                    <!-- The Star Rating Section-->
+                    <div class="rating">
+                      <% if (userRating && userRating.rating) { %>
+                          <input type="hidden" id="userRating" value="<%= userRating.rating || 0 %>">
+                          <span id="removeRating" class="removeRating">&times;</span>
+                          <div class="star-rating">
+                            <% for (let i = 1; i <= 5; i++) { %>
+                                <% if (i <= userRating.rating) { %>
+                                    <span data-value="<%= i %>" class="selected">★</span> <!-- Filled star -->
+                                <% } else { %>
+                                    <span data-value="<%= i %>" class="">★</span> <!-- Empty star -->
+                                <% } %>
+                            <% } %>
+                          </div>
+                       <% } else { %>
+                          <input type="hidden" id="userRating" value="0">
+                          <span id="removeRating" class="removeRating">&times;</span>
+                          <div class="star-rating">
+                            <span data-value="1">★</span>
+                            <span data-value="2">★</span>
+                            <span data-value="3">★</span>
+                            <span data-value="4">★</span>
+                            <span data-value="5">★</span>
+                          </div>
+                        <% } %>
+                    </div>
+              
+                    <!-- The section where the user will type the review -->
+                    <div class="activity-buttons">
+                      <% if (userRating && userRating.review) { %>
+                        <button id="reviewLog" class="review-log">Edit your review...</button>
+                      <% } else { %> 
+                        <button id="reviewLog" class="review-log">Review or log...</button>
+                      <% } %>
+                    </div>
+                    <!-- The form where the user will place the review in -->
+                    <div id="reviewFormModal" class="reviewForm">
+                      <div class="reviewModalContent">
+                        <span class="close">&times;</span>
+                        <div class="movieFormPoster">
+                          <img src="https://image.tmdb.org/t/p/w500<%= movie.poster_path %>" alt="<%= movie.title %>">
+                        </div>
+                        <div class="reviewFormContent">
+                         <h3>I watched...</h3> 
+                         <h1> <%= movie.title %> </h1>
+                         <p><span><%= movie.release_date %></span></p>
+                         <p>Leave your review: </p>
+                         <% if (userRating && userRating.review) { %>
+                            <textarea name="" id="reviewTextarea"><%= userRating.review %></textarea>
+                         <% } else { %>  
+                            <textarea name="" id="reviewTextarea" placeholder="Add a review"></textarea>
+                          <% } %>
+                         <div class="ratesFormSection"> 
+                            <div class="rating">
+                              <% if (userRating && userRating.rating) { %>
+                                  <input type="hidden" id="userRating" value="<%= userRating.rating || 0 %>">
+                                  <span id="removeRating" class="removeRating">&times;</span>
+                                  <div class="star-rating">
+                                    <% for (let i = 1; i <= 5; i++) { %>
+                                        <% if (i <= userRating.rating) { %>
+                                            <span data-value="<%= i %>" class="selected">★</span> <!-- Filled star -->
+                                        <% } else { %>
+                                            <span data-value="<%= i %>" class="">★</span> <!-- Empty star -->
+                                        <% } %>
+                                    <% } %>
+                                  </div>
+                              <% } else { %>
+                                  <input type="hidden" id="userRating" value="0">
+                                  <span id="removeRating" class="removeRating">&times;</span>
+                                  <div class="star-rating">
+                                    <span data-value="1">★</span>
+                                    <span data-value="2">★</span>
+                                    <span data-value="3">★</span>
+                                    <span data-value="4">★</span>
+                                    <span data-value="5">★</span>
+                                  </div>
+                                <% } %>
+                            </div>
+                            <% if (userRating && userRating.liked) { %>
+                              <!-- If Liked, show Liked button -->
+                              <button id="likedBtn" class="liked action-btn" style="color: hsl(36, 80%, 58%);" onclick="removeLiked()">
+                                  <i class="fa fa-heart"></i> Liked
+                              </button>
+                            <% } else { %>
+                              <!-- If not Liked, show Like button -->
+                              <button id="likeBtn" class="like action-btn" onclick="toggleLiked()">
+                                  <i class="fa fa-heart"></i> Like
+                              </button>
+                            <% } %>
+                         </div>
+                         <div class="buttonFormContainer">
+                          <% if (userRating && userRating.review) { %>
+                            <button id="deleteReview" class="deleteBtn">delete</button>
+                            <button id="saveReview" class="saveBtn">Save</button>
+                          <% } else { %>
+                            <button id="saveReview" class="saveBtn">Save</button>
+                          <% } %>
+                         </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <% } else { %> 
+                  <h1 class="signInAlert">Sign in to add a review</h1>
+                <% } %>
+              </div>
+            </div>
+        </div>
+        <!-- Streaming Options Section -->
+        <div class="movieStreaming">
+            <div class="streamingHeader">
+                <h2>Where to Watch</h2>
+                <button class="movieTrailer" onclick="displayTrailer()"><i class="fa-brands fa-youtube fa-lg" style="color: hsl(208, 11%, 66%);"></i> Trailer</button>
+            </div>
+            <!-- section for displaying trailer -->
+            <div id="trailerModal" class="modal"> 
+                <div class="modalContentTrailer">
+                    <span class="closeTrailer">&times;</span>
+                    <iframe id="videoPlayer" class="frame" src="<%= finalTrailer %>" width="100%" height="700px"></iframe>
+                </div>
+            </div>
+            <div class="providerList">
+              <% if (Object.keys(provider).length === 0) { %> <!-- Check if provider is empty -->
+                <span>No Services Available At The Moment</span>
+              <% } else { %>
+                <ul>
+                  <% Object.values(provider).forEach(provider => { %>
+                    <li>
+                      <img src="<%= provider.logo %>" alt="<%= provider.name %> logo">
+                      <span><%= provider.name %> </span>
+                      
+                      <!-- Check for Buy & Rent -->
+                      <% if (provider.rent && provider.buy) { %>
+                        <span>BUY & RENT</span>
+                      <% } else if (provider.rent) { %>
+                        <span>RENT</span>
+                      <% } else if (provider.buy) { %>
+                        <span>BUY</span>
+                      <% } else { %>
+                        <span>No Services Available</span>
+                      <% } %>
+                    </li>
+                  <% }) %>
+                </ul>
+              <% } %>
+            </div>
+        </div>
+        <!-- Cast, Crew, Genre, etc. Section -->
+        <div class="movieDetails">
+            <ul class="detailLinks">
+                <li><a id="Cast" href="#" onclick="showCast()">Cast</a></li>
+                <li><a id="Crew" href="#" onclick="showCrew()">Crew</a></li>
+                <li><a id="Genre" href="#" onclick="showGenre()">Genres</a></li>
+                <li><a href="#">Release Dates</a></li>
+            </ul>
+            <!-- ALL THE DIVS RELATED TO THE MOVIE DETAILS WHICH ARE HIDDEN -->
+            <!-- Cast section -->
+            <div id="CastDetails" class="castContainer">
+                <% casts.forEach(cast => { %>
+                    <div class="cast">
+                        <p><%= cast.name %></p>
+                    </div> 
+                  <% }) %>
+            </div>
+            <!-- Crew Section -->
+            <div id="CrewDetails" class="crewContainer">
+                <div class="crew">
+                  <span>Directors</span>
+                  <p>
+                    <% crews.directors.forEach(director => { %>
+                      <%= director %><br>
+                    <% }) %>
+                  </p>
+                </div>
+                <div class="crew">
+                  <span>Producers</span>
+                  <p>
+                    <% crews.producers.forEach(producer => { %>
+                      <%= producer %><br>
+                    <% }) %>
+                  </p>
+                </div>
+                <div class="crew">
+                  <span>Writers</span>
+                  <p>
+                    <% crews.writers.forEach(writer => { %>
+                      <%= writer %><br>
+                    <% }) %>
+                  </p>
+                </div>
+                <div class="crew">
+                  <span>Editors</span>
+                  <p>
+                    <% crews.editors.forEach(editor => { %>
+                      <%= editor %><br>
+                    <% }) %>
+                  </p>
+                </div>
+                <div class="crew">
+                  <span>Cinematographers</span>
+                  <p>
+                    <% crews.cinematographers.forEach(cinematographer => { %>
+                      <%= cinematographer %><br>
+                    <% }) %>
+                  </p>
+                </div>
+                <div class="crew">
+                  <span>Visual effects</span>
+                  <p>
+                    <% crews.visualeffects.forEach(visualeffect => { %>
+                      <%= visualeffect %><br>
+                    <% }) %>
+                  </p>
+                </div>
+                <div class="crew">
+                  <span>Sounds</span>
+                  <p>
+                    <% crews.sounds.forEach(sound => { %>
+                      <%= sound %><br>
+                    <% }) %>
+                  </p>
+                </div>
+            </div>
+            <!-- Genre Section -->
+            <div id="genreDetails" class="genreContainer">
+              <% genres.forEach(genre => { %>
+                  <div class="genre">
+                      <p><%= genre.name %></p>
+                  </div> 
+                <% }) %>
+            </div>
+        </div>
+    </div>    
+    <!-- Reviews Section -->
+    <div class="reviews">
+      <div class="reviewHeader">
+        <h1>Popular reviews</h1>
+        <a href="/films/<%= movieID %>/fullReviews"><h2>More reviews</h2></a>
+      </div>
+      <% reviews.slice(0,3).forEach (review => { %>
+      <div class="reviewContainer">
+        <div class="review">
+          <div class="profileSection">
+            <% if (review.avatar === 'https://image.tmdb.org/t/p/w45/null') {%>
+                <i class="fa-solid fa-user fa-2xl"></i>
+            <% } else {%>
+                <img src="<%= review.avatar %>" alt="Avatar" class="profileImg">
+            <% } %>
+            <span>Review by: <p><%= review.author %></p></span>
+            <span>Rating: <p><%= review.rating %> / 10</p></span>
+          </div>
+          <div class="reviewSection">
+            <p><%- review.content %></p>
+          </div>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+    <!-- Similar Movies -->
+    <div>
+
+    </div>
+
+    <script src="/js/active.js"></script>
+    <script src="/js/showTrailer.js"></script>
+    <script src="/js/movieDetails.js"></script>
+    <script src="/js/reviewBox.js"></script>
+    <script src="/js/ratingSystem.js"></script>
+    <%- include("../partials/footer.ejs") %>   
+</body>
+</html>

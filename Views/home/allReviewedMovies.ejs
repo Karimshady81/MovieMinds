@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../partials/head.ejs') %>
+<body>
+    <%- include('../partials/nav.ejs') %>
+    <div class="recentReviews">
+        <div class="likesTitle">
+          <h3>Recent Reviews</h3>
+        </div>
+        <ul class="reviewList">
+          <% if (userReviews && userReviews.length > 0) { %>
+            <% userReviews.forEach (review => { %>
+              <li class="reviewItem" data-movie-id = "<%= review.movieID %>">
+                <!-- the content will be dynamiclly filled -->
+                <a href="/films/<%= review.movieID %>">
+                  <!-- PlaceHolder content, it will be filled by JS after fetching movie details -->
+                </a>
+                <div class="reviewContent">
+                  <h4 class="movieTitle"></h4>
+                  <div class="star-rating">
+                    <% for (let i = 1; i <= 5; i++) { %>
+                        <% if (i <= review.rating) { %>
+                            <span class="selected">★</span>
+                        <% } else { %>
+                            <span>☆</span>
+                        <% } %>
+                    <% } %>
+                  </div>
+                  <p class="reviewDate"><span>Watched at: </span><%= new Date(review.createdAt).toLocaleDateString("en-US", {
+                    weekday: 'short', 
+                    year: 'numeric', 
+                    month: 'short', 
+                    day: 'numeric' 
+                    }) %>
+                  </p>
+                  <p><%= review.review %></p>
+                </div>
+              </li>
+              <% }); %>
+            <% } else { %>
+              <h3 class="noReviews">No Reviewed Movies</h3>
+            <% } %>
+          </ul>
+      </div> 
+    <%- include('../partials/footer.ejs') %>
+    <script src="/js/userProfile.js"></script>
+</body>
+</html>

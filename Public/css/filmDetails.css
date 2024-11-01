@@ -1,0 +1,628 @@
+@import url('https://fonts.googleapis.com/css2?family=Prata&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap');
+
+
+body{
+    margin: 0 auto;
+    padding: 0 20px;
+    max-width: 80%;
+    color: hsl(208, 11%, 46%);
+    background-color: hsl(210, 21%, 13%);
+    font-family: "Prata", serif;
+}
+
+h2,li,p{
+    color: hsl(208, 11%, 46%);
+    font-family: "Prata", serif;
+    font-weight: 600;
+}
+
+.filmContainer {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* Adjust based on how wide you want the poster compared to the text */
+    gap: 20px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.moviePoster img {
+    max-width: 100%; /* Adjust to fit your poster size */
+    height: 100%;
+    border-radius: 10px; /* For rounded corners */
+    box-shadow: -4px 4px 6px 2px rgb(255 255 255 / 20%)
+}
+
+.movieInfo {
+    display: flex;
+    flex-direction: column;
+    margin-left: 60px;
+    font-size: 1.4rem;
+    gap: 15px;
+}
+
+.movieInfo h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: hsl(36, 80%, 58%);
+}
+
+.description {
+    font-size: 2rem;
+    max-width: 674px;
+    margin: 15px 0;
+    margin-bottom: 1rem;
+}
+
+span {
+    color: hsl(36, 80%, 58%);
+}
+
+.movieDetails {
+    margin-top: 20px;
+}
+
+.movieStreaming {
+    margin-top: 20px;
+    border: 2px solid;
+    border-radius: 10px;
+    height: max-content;
+}
+
+
+.streamingHeader h2 {
+    color: hsl(208, 11%, 66%);
+}
+
+.movieTrailer{
+    background-color: hsl(208, 11%, 26%);
+    font-size: 1.3rem;
+    color: hsl(208, 11%, 66%);
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    padding: 10px 20px;
+}
+
+.movieTrailer:hover {
+    color: hsl(208, 11%, 86%);
+}
+
+.streamingHeader {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: hsl(208, 11%, 26%);
+    border-start-end-radius: 10px;
+    border-start-start-radius: 10px;
+}
+
+.streamingLinks {
+    padding: 10px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    max-width: 300px;
+  }
+  
+  .streamingLinks h2 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+
+  .noService {
+    color: hsl(36, 80%, 58%);
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 10px;
+  }
+  
+  .providerList {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .providerList ul {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .providerList li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 2px solid;
+  }
+  
+  .providerList img {
+    margin-right: 10px;
+  }
+  
+  .providerList span {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    padding: 20px 0;
+  }
+
+
+.movieDetails h2, .detailLinks{
+    display: flex;
+    margin-left: 60px;
+    gap: 20px;
+    flex-direction: row;
+    border-bottom: 2px solid;
+    max-width: 40%;
+    font-size: 1.3rem;
+}
+
+.detailLinks li {
+    list-style: none;
+}
+
+
+.streamingLinks li {
+    list-style: none;
+    border-bottom: 2px solid;
+    margin-top: 10px;
+}
+
+.detailLinks a, .streamingLinks a {
+    text-decoration: none;
+    color: #fff; /* Adjust to fit your theme */
+}
+
+.detailLinks a:hover {
+    border-bottom: 2px solid;
+}
+
+.detailLinks a.active {
+    color: hsl(36, 80%, 58%); /* Change the color */
+    border-bottom: 2px solid hsl(36, 80%, 58%);;
+}
+
+.streamingLinks a{
+    margin: 15px;
+    font-size: 1.5rem;
+}
+
+/* TRAILER FRAME */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 3;
+    left: 0;
+    top: 0;
+    width: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+}
+
+.modalContentTrailer {
+    margin: 5% auto;
+    padding: 10px;
+    background-color: hsl(35deg 4.93% 32.41% / 91%);
+    width: 80%;
+    border-radius: 20px;
+}
+
+.closeTrailer{
+    color: hsl(208, 11%, 66%);
+    float: right;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.closeTrailer:hover,
+.closeTrailer:focus {
+    color: hsl(208, 11%, 56%);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Cast section */
+.castContainer {
+    display: none;
+    flex-wrap: wrap; /* To allow wrapping to a new line */
+    gap: 10px; /* Space between each item */
+    margin-left: 60px;
+    margin-top: 10px;
+ }
+ 
+ .cast {
+    background-color: hsl(210, 21%, 20%);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 6px 5px 5px rgb(255 253 253 / 10%);
+ }
+
+ .cast:hover {
+    cursor: pointer;
+ }
+
+ /* Crew Section */
+ .crewContainer {
+    display: none;
+    margin-left: 60px;
+    margin-top: 10px;
+  }
+  
+  .crew {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+  }
+  
+  .crew p {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.5;
+    margin: 0;
+  }
+  
+  .crew span {
+    text-transform: uppercase;
+    margin-right: 10px;
+  }
+  
+  /* Genre section */
+.genreContainer {
+    display: none;
+    flex-wrap: wrap; /* To allow wrapping to a new line */
+    gap: 10px; /* Space between each item */
+    margin-left: 60px;
+    margin-top: 10px;
+ }
+ 
+ .genre {
+    background-color: hsl(210, 21%, 20%);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 6px 5px 5px rgb(255 253 253 / 10%);
+ }
+
+ .genre:hover {
+    cursor: pointer;
+ }
+ 
+
+ /* Reviews Section */
+.reviewHeader{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid #b58225;
+}
+
+.reviewHeader a{
+    text-decoration: none;
+}
+
+.reviewHeader h2:hover{
+    color: hsl(208, 11%, 66%);
+}
+
+ .reviews{
+    padding: 50px 0;
+ }
+
+ .reviewContainer{
+    width: 80%;
+    margin: auto;
+ }
+
+ .review{
+    display: flex;
+    font-size: 1.5rem;
+    flex-direction: column;
+    border-bottom: 2px solid #b58225;
+    padding: 15px 0;
+ }
+
+ .profileSection{
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    gap: 20px;
+    padding-bottom: 20px;
+ }
+
+ .profileSection p {
+    color: hsl(0, 0%, 100%);
+    display: inline;
+ }
+
+ .profileImg{
+    width: 5%;
+    border-radius: 100%;
+ }
+
+ .reviewSection{
+    width: 85%;
+    margin: auto;
+    padding-bottom: 15px;
+ }
+
+ .reviewSection p {
+    line-height: 160%;
+    font-family: "Gowun Batang", serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+/* The rating box section */
+.ratesContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.movie-panel {
+    width: 60%;
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.actions {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 15px;
+}
+
+.action-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.2em;
+}
+
+.action-btn i {
+    margin-right: 5px;
+}
+
+.rating {
+    display: flex;
+    justify-content: center;
+}
+
+.star-rating {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.star-rating span {
+    font-size: 30px;
+    color: lightgray;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.star-rating span.selected {
+    color: gold;
+}
+
+.removeRating {
+    display: none;
+    color: hsl(0, 0%, 50%);
+    margin: 4px 3px;
+    cursor: pointer;
+    font-size: 1.7rem;
+}
+
+.removeRating:hover {
+    color: hsl(0, 0%, 70%);
+}
+  
+.activity-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.activity-buttons button {
+    background-color: #444;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    width: 80%;
+    margin: 5px 0;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.activity-buttons button:hover {
+    background-color: #555;
+}
+
+.share-section {
+    display: flex;
+    justify-content: center;
+}
+
+.share-btn {
+    background-color: #555;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.permalink {
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.signInAlert {
+    display: flex;
+    justify-content: center;
+    margin-top: 55px;
+}
+
+/* The place where user will type the review */
+/* Modal container */
+.reviewForm {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    opacity: 0;
+    visibility: hidden; /* Initially hidden */
+    transition: opacity 0.4s ease, visibility 0.4s ease; /* Transition for opacity and visibility */
+    z-index: 1000;
+}
+
+/* Modal background */
+.reviewForm {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 1000;
+}
+
+/* Modal content */
+.reviewModalContent {
+    display: flex;
+    position: relative;
+    background-color: hsl(210, 21%, 25%); /* Adjusted to a dark theme */
+    width: 50%;
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    gap: 20px; /* Increased gap for more spacing between the poster and content */
+    transform: translateY(50%); /* Shift it down slightly for a centered look */
+}
+
+/* Movie poster styling */
+.movieFormPoster {
+    max-width: 30%; /* Adjust to make the poster take up more width */
+}
+
+.movieFormPoster img {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Add some shadow around the poster */
+}
+
+/* Review form content */
+.reviewFormContent {
+    flex: 1; /* Allow the form content to take the remaining space */
+    color: #f0f0f0; /* Light text color for contrast */
+}
+
+.reviewFormContent h1 {
+    font-size: 1.8rem;
+    margin: 0 0 10px 0;
+}
+
+.reviewFormContent h3 {
+    font-size: 1.2rem;
+    color: #ccc; /* Slightly lighter for the subheading */
+}
+
+.reviewFormContent p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+/* Textarea for the review */
+.reviewFormContent textarea {
+    width: 100%;
+    max-height: 300px;
+    background-color: hsl(210, 21%, 15%);
+    color: #f0f0f0;
+    border: 1px solid hsl(210, 21%, 30%);
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    resize: none;
+    font-size: 1.2rem;
+}
+
+.ratesFormSection {
+    display: flex;
+    justify-content: flex-end;
+    gap: 2%;
+}
+
+/* Save button */
+.saveBtn {
+    background-color: hsl(120, 70%, 40%);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.deleteBtn {
+    background-color: hsl(208, 11%, 46%);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.saveBtn:hover {
+    background-color: hsl(120, 70%, 35%);
+}
+
+.deleteBtn:hover {
+    background-color: hsl(208, 11%, 36%);
+}
+
+.buttonFormContainer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 5% auto;
+    gap: 10px;
+}
+
+/* Close button */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    color: #ccc;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: red;
+}
+
+/* Show the modal */
+.reviewForm.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+

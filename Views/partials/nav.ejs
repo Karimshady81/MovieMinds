@@ -1,0 +1,57 @@
+<nav>
+    <a href="/"><img class="nav-img" src="/images/logo3.png" alt="Logo"></a>
+    <ul class="new-links" id="navSection">
+        <li><a href="/" class="<%= page === 'home' ? 'active' : '' %>" >Home</a></li>
+        <li><a href="/films" class="<%= page === 'films' ? 'active' : '' %>">Films</a></li>
+        <% if (user) { %>
+            <!-- Show the username if logged in -->
+            <li class="dropdown">
+              <span style="color: hsl(32, 46%, 57%);"><%= user.username %></span>
+              <i class="fa-solid fa-angle-down fa"></i>
+              <!-- Dropdown content -->
+              <div class="dropdown-content">
+                <a href="/profile" class="<%= page === 'profile' ? 'active' : '' %>">Profile</a>
+                <a href="/editProfile" class="<%= page === 'editProfile' ? 'active' : '' %>">Edit Profile</a>
+                <a href="/logout">Logout</a>
+              </div>
+            </li>
+          <% } else { %>
+            <!-- Show "Sign In" link if not logged in -->
+            <li><a href="#" onclick="displaySignInSection()">Sign In</a></li>
+          <% } %>
+    </ul>
+    <!-- The sign in section -->
+    <div id="signIN" class="signIN"> 
+      <div class="signInContainer">
+        <form action="/signin" class="signinForm" method="POST">
+          <% if (error) { %>
+            <div class="errorMessage">
+              <p><%= error %></p>
+            </div>
+          <% } %>
+          <div>
+            <span class="closeSignin">&times;</span>
+            <label for="username" class="nameLabel">Username</label>
+            <input class="input" type="text" id="username" name="username" required>
+            
+            <label for="password" class="passLabel">Password</label>
+            <input class="input" type="password" id="password" name="password" required>
+  
+            <button type="submit" class="submit-btn">Sign In</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- Search bar section -->
+    <form action="/search" method="GET">
+      <div class="search-bar">
+        <input type="text" name="q" placeholder="Search Movies....." required>
+        <button type="submit">
+          <img src="/images/search.png" alt="">
+        </button>
+      </div>
+    </form>
+    
+    
+    <script src="/js/signIn.js"></script>
+</nav>

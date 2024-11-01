@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Prata&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap');
+
+
+body {
+    margin: 0 auto;
+    padding: 0;
+    background-color: hsl(210, 21%, 13%);
+    font-family: 'Prata', serif;
+}
+  
+.searchPage {
+    border-bottom: 2px solid #b58225;
+    margin-bottom: 15px;
+}
+
+.searchList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0;
+    list-style: none;
+}
+  
+.searchContent {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin: 15px;
+    background-color: #282828;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: -3px 2px 8px 4px rgb(255 255 255 / 20%);
+}
+
+.searchContent a {
+    text-decoration: none;
+}
+  
+.searchImg {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #444;
+}
+  
+.searchDetails {
+    padding: 15px;
+}
+ 
+.searchDetails h2,span{
+    color: hsl(36, 80%, 58%);
+}
+
+.searchDetails h2 {
+    font-size: 1.5em;
+    margin: 0 0 10px;
+}
+
+.searchDetails h2:hover{
+    color: hsl(36, 80%, 28%);
+}
+  
+.searchDetails p {
+    font-size: 1em;
+    line-height: 1.6;
+}
+
+.pagination {
+    margin-top: 15px;
+}
+
+  

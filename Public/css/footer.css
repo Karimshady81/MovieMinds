@@ -1,0 +1,33 @@
+footer {
+    color: hsl(0, 0%, 85%); /* Light text color */
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.social-links {
+    margin-top: 10px;
+}
+
+.social-icon {
+    color: hsl(0, 0%, 0%); /* Light icon color */
+    margin: 0 10px;
+    font-size: 1.5em;
+    transition: color 0.3s ease;
+}
+
+.social-icon:hover {
+    color: hsl(40, 70%, 50%); /* Highlight color on hover */
+}
+
+footer p {
+    margin: 10px 0;
+    font-size: 1em;
+}

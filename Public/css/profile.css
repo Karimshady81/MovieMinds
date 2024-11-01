@@ -1,0 +1,273 @@
+@import url('https://fonts.googleapis.com/css2?family=Prata&display=swap');
+
+body{
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+    max-width: 80%;
+    background-color: hsl(210, 21%, 13%);
+    font-family: "Prata", serif;
+}
+
+.profileContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px;
+    color: hsl(208, 11%, 46%);
+    background-color: hsl(210, 21%, 13%);
+    border-radius: 10px;
+    text-align: center;
+}
+  
+.profileDetails {
+    margin-bottom: 30px;
+}
+  
+.profileImg {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin-bottom: 15px;
+    object-position: top;
+    cursor: pointer;
+}
+
+.profileImg:hover {
+  border: 2px solid hsl(36, 80%, 58%);
+}
+
+.profileBio {
+  display: flex;
+    align-content: center;
+    gap: 5px;
+    margin: 10px 0;
+    flex-direction: column;
+}
+  
+.profileDetails i {
+    margin-right: 10px;
+}
+  
+.profileDetails a {
+    text-decoration: none;
+    color: inherit;
+    margin-right: 5px;
+}
+
+.profileDetails a:hover {
+    color: hsl(36, 80%, 58%);
+}
+
+.profileSections .section {
+    margin-bottom: 40px;
+}
+
+.favouriteMovies h3 {
+    text-align: start;
+    border-bottom: 2px solid hsl(36, 80%, 58%);
+}
+
+.likesTitle {
+  display: flex;
+  justify-content: space-between;
+  text-align: start;
+  border-bottom: 2px solid hsl(36, 80%, 58%);
+}
+
+.likesTitle a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.likesTitle a:hover {
+  color: hsl(36, 80%, 58%);
+}
+
+.reviewsTitle {
+  display: flex;
+  justify-content: space-between;
+  text-align: start;
+  border-bottom: 2px solid hsl(36, 80%, 58%);
+}
+
+.likesTitle a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.likesTitle a:hover {
+  color: hsl(36, 80%, 58%);
+}
+
+.recentReviews h3 {
+    text-align: start;
+}
+
+.moviesGrid {
+    display: flex;
+    justify-content: space-around;
+    flex: row;    
+}
+  
+.movieCard {
+    background-color: #282828;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 10px;
+    text-align: center;
+    box-shadow: -3px 2px 8px 4px rgb(255 255 255 / 20%);
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+  
+.movieCard:hover {
+    transform: scale(1.05);
+}
+  
+.movieCard img {
+    width: 100%;
+    height: auto;
+}
+
+.movieCard a {
+  text-decoration: none;
+}
+  
+.movieCard p {
+    color: white;
+    padding: 10px;
+    font-size: 1.2em;
+}
+
+.noLikes {
+  font-size: 2rem;
+  width: 100%;
+  background-color: #282828;
+  border-radius: 10px;
+  margin: 20px 0px;
+  box-shadow: -3px 2px 9px 4px rgb(255 255 255 / 20%);
+  cursor: default;
+}
+
+.noReviews {
+  font-size: 2rem;
+  width: 100%;
+  background-color: #282828;
+  border-radius: 10px;
+  margin: 20px 0px;
+  box-shadow: -3px 2px 9px 4px rgb(255 255 255 / 20%);
+  cursor: default;
+  text-align: center !important;
+}
+
+.recentReviews {
+    margin-top: 40px;
+    color: hsl(208, 11%, 46%);
+}
+  
+.sectionTitle {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: hsl(36, 80%, 58%);
+    border-bottom: 2px solid hsl(36, 80%, 58%);
+    padding-bottom: 10px;
+}
+  
+  .reviewList {
+    display: block;
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+  }
+  
+  .reviewItem {
+    display: flex;
+    align-items: flex-start;
+    background-color: #282828;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    color: #fff;
+  }
+  
+  .reviewImage {
+    margin-right: 20px;
+  }
+  
+  .reviewImage img {
+    width: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  
+  .reviewContent {
+    flex-grow: 1;
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+  
+  .reviewContent h4 {
+    font-size: 1.5em;
+    color: hsl(36, 80%, 58%);
+    margin-bottom: 10px;
+  }
+  
+  .reviewContent .year {
+    font-size: 0.9em;
+    color: hsl(36, 80%, 58%);
+  }
+  
+  .reviewContent .rating {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+  
+  .reviewContent .reviewDate {
+    font-size: 0.9em;
+    color: #ddd;
+    margin-bottom: 10px;
+  }
+  
+  .reviewContent p {
+    margin: 5px 0;
+  }
+  
+  .likes {
+    font-size: 0.9em;
+    color: #bbb;
+  }
+
+.watchListTitle {
+  display: flex;
+  justify-content: space-between;
+  text-align: start;
+  border-bottom: 2px solid hsl(36, 80%, 58%);
+}
+
+.watchListTitle a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.watchListTitle a:hover {
+  color: hsl(36, 80%, 58%);
+}
+
+.noWatchlist{
+  font-size: 2rem;
+  width: 100%;
+  background-color: #282828;
+  border-radius: 10px;
+  margin: 20px 0px;
+  box-shadow: -3px 2px 9px 4px rgb(255 255 255 / 20%);
+  cursor: default;
+  text-align: center !important;
+}
+  
+  

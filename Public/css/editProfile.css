@@ -1,0 +1,224 @@
+@import url('https://fonts.googleapis.com/css2?family=Prata&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap');
+
+
+body{
+margin: 0 auto;
+padding: 0 20px;
+max-width: 80%;
+color: hsl(208, 11%, 46%);
+background-color: hsl(210, 21%, 13%);
+font-family: "Prata", serif;
+}
+
+h2,li,p{
+color: hsl(208, 11%, 46%);
+font-family: "Prata", serif;
+font-weight: 600;
+}
+
+/* Container to hold the profile and movies section */
+.profile-container {
+display: flex;
+justify-content: space-between;
+align-items: flex-start;
+margin: 20px auto;
+padding: 20px;
+max-width: 1000px;
+}
+
+#profile {
+cursor: pointer;
+}
+
+#profile:hover {
+color: hsl(36, 80%, 58%);
+}
+
+#avatar {
+cursor: pointer;
+}
+
+#avatar:hover {
+color: hsl(36, 80%, 58%);
+}
+
+#auth {
+    cursor: pointer;
+}
+
+#auth:hover {
+    color: hsl(36, 80%, 58%);
+}
+
+/* Profile form section styling */
+.profile-form {
+flex: 1;
+padding: 20px;
+background-color: #2d2d2d; /* Match the dark background */
+border-radius: 10px;
+}
+
+.profile-form h2 {
+color: #fff;
+font-size: 24px;
+margin-bottom: 20px;
+}
+
+.profile-form label {
+color: #ccc;
+font-size: 16px;
+margin-bottom: 8px;
+display: block;
+}
+
+.profile-form input {
+width: 100%;
+padding: 10px;
+margin-bottom: 15px;
+background-color: #3a3a3a;
+border: 1px solid #444;
+border-radius: 5px;
+color: #fff;
+}
+
+.profile-form button {
+padding: 10px 20px;
+background-color: #007bff;
+color: #fff;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+font-size: 16px;
+margin-top: 10px;
+}
+
+.profile-form button:hover {
+background-color: #0056b3;
+}
+
+.bioDetails {
+display: flex;
+justify-content: space-between;
+}
+
+input[readonly] {
+background-color: #f0f0f0;  /* Light gray background */
+border: none;               /* No border */
+color: #333;                /* Darker text color */
+}
+
+/* Main Container */
+.avatar-container {
+display: flex;
+flex-direction: column;
+align-items: center;
+background-color: #2d2d2d;
+border-radius: 10px;
+padding: 20px;
+width: 50%;
+margin: 20px auto;
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+color: #ccc;
+}
+
+/* Form Label */
+.avatar-container label {
+font-size: 1rem;
+color: #fff;
+margin-bottom: 10px;
+}
+
+/* File Input Styling */
+#Avatar {
+font-size: 0.9rem;
+color: #aaa;
+border: 1px solid #444;
+padding: 8px 10px;
+border-radius: 5px;
+background-color: #333;
+color: #fff;
+width: 100%;
+margin-top: 10px;
+cursor: pointer;
+transition: background-color 0.3s, border-color 0.3s;
+}
+
+#Avatar:hover {
+background-color: #444;
+border-color: #666;
+}
+
+/* Submit Button Styling */
+#saveAvatar {
+background-color: #007bff;
+color: #fff;
+padding: 10px 20px;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+font-size: 1rem;
+margin-top: 15px;
+transition: background-color 0.3s;
+width: 100%;
+}
+
+#saveAvatar:hover {
+background-color: #0056b3;
+}
+
+
+.password-container {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #333; /* Dark background to match the theme */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.password-container h2 {
+    color: #fff;
+    margin: 0;
+    padding: 10px 0;
+}
+
+.password-container label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1rem;
+    color: #eee; /* Light color for text */
+    font-weight: bold;
+}
+
+.password-container input[type="text"],
+.password-container input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: #444; /* Slightly lighter background for inputs */
+    border: 1px solid #555;
+    border-radius: 4px;
+    color: #eee;
+    font-size: 1rem;
+}
+
+.password-container button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.password-container button:hover {
+    background-color: #0056b3;
+}
+
+

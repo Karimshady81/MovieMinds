@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("../partials/head.ejs") %>
+<body>
+    <%- include("../partials/nav.ejs") %>
+    <div class="container"></div>
+    <h1 class="searchPage">Search Results</h1>
+        <div class="grid">
+            <% movies.forEach(film => { %>
+                <div class="movieBanner">
+                    <a href="/films/ <%= film.id %>">
+                    <div class="movieFront">
+                        <img src="https://image.tmdb.org/t/p/w500<%= film.poster_path %>" alt="<%= film.title %>">
+                        <p class="title"><%= film.title %></p>
+                    </div>
+                    <div class="movieBack">
+                        <h1><%= film.title %></h1>
+                        <p><span>Release Date: </span><%= film.release_date %></p>
+                        <p><span>Rating: </span><%= Math.round(film.vote_average * 10) / 10 %> / 10</p>
+                    </div>
+                    </a>
+                </div>
+            <% }) %>
+        </div>
+        <div class="pagination">
+            <% if (currentPage > 1) { %>
+                <!-- Previous button -->
+                <a href="/search?q=<%= query %>&page=<%= currentPage - 1 %>" class="button">Previous</a>
+            <% } %>
+        
+            <% if (morePages) { %>
+                <!-- Next button -->
+                <a href="/search?q=<%= query %>&page=<%= currentPage + 1 %>" class="button">Next</a>
+            <% } %>
+        </div>               
+    </div>
+    <%- include("../partials/footer.ejs") %>   
+</body>
+</html>

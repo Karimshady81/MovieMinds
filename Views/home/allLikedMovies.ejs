@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../partials/head.ejs') %>
+<body>
+    <%- include('../partials/nav.ejs') %>
+    <div class="recentLikes section">
+        <div class="likesTitle">
+          <h3>Recent Likes</h3>
+        </div>
+        <div class="likedMoviesGrid">
+          <!-- Repeat this block for each liked film -->
+          <% if(userLikes && userLikes.length > 0) { %>
+              <% userLikes.forEach (like => { %>
+                <div class="movieCard" data-movie-id = "<%= like.movieID %>">
+                  <!-- The content will be dynamically filled -->
+                  <a href="/films/<%= like.movieID %>">
+                  <!-- PlaceHolder content, it will be filled by JS after fetching movie details -->
+                  </a>
+                  <p class="likedAt"><span>Liked at:</span> <%= new Date(like.updatedAt).toLocaleDateString("en-US", {
+                    weekday: 'short', 
+                    year: 'numeric', 
+                    month: 'short', 
+                    day: 'numeric' 
+                }) %></p>
+                </div>
+              <% }) %>
+          <% } else { %>
+              <h3 class="noLikes">No Liked movies</h3>
+          <% } %>
+          <!-- End repeat -->
+        </div>
+      </div>
+
+      <%- include('../partials/footer.ejs') %>
+      <script src="/js/userProfile.js"></script>
+</body>
+</html>

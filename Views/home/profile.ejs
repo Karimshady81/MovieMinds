@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../partials/head.ejs') %>
+  <body>
+    <%- include('../partials/nav.ejs') %>
+    <div class="profileContainer">
+      <!-- PROFILE DETAILS -->
+      <div class="profileDetails">
+        <img id="avatar" src="<%= user.avatar || '/images/matrix-avatar.webp' %>" alt="User Avatar" class="profileImg" />
+        <h2><%= user.givenName %> <%= user.familyName %></h2>
+        <div class="profileBio">
+            <p><i class="fa-solid fa-map-pin"></i> <%= user.location %></p>    
+            <p class="bio"><i class="fa-solid fa-book"></i><%= user.bio %></p>
+        </div>
+      </div>
+
+      <div class="profileSections">
+        <!-- FAV MOVIES / im not doing it at the moment this is just an idea that can be done later-->
+        <!-- <div class="favouriteMovies section">
+            <h3>Favorite Films</h3>
+            <div class="moviesGrid">
+              <div class="movieCard">
+                <img src="/images/dead.jpg" alt="Favorite Film" />
+                <p>The Wolf of Wall Street</p>
+              </div>
+              <div class="movieCard">
+                <img src="/images/dead.jpg" alt="Favorite Film" />
+                <p>The Wolf of Wall Street</p>
+              </div>
+              <div class="movieCard">
+                <img src="/images/dead.jpg" alt="Favorite Film" />
+                <p>The Wolf of Wall Street</p>
+              </div>
+              <div class="movieCard">
+                <img src="/images/dead.jpg" alt="Favorite Film" />
+                <p>The Wolf of Wall Street</p>
+              </div>
+            </div>
+        </div> -->
+        
+        <!-- RECENT LIKED MOVIES -->
+        <div class="recentLikes section">
+          <div class="likesTitle">
+            <h3>Recent Likes</h3>
+            <a href="/allLikedMovies">ALL</a>
+          </div>
+          <div class="moviesGrid">
+            <!-- Repeat this block for each liked film -->
+            <% if(userLikes && userLikes.length > 0) { %>
+                <% userLikes.forEach (like => { %>
+                  <div class="movieCard" data-movie-id = "<%= like.movieID %>">
+                    <!-- The content will be dynamically filled -->
+                    <a href="/films/<%= like.movieID %>">
+                    <!-- PlaceHolder content, it will be filled by JS after fetching movie details -->
+                    </a>
+                  </div>
+                <% }) %>
+            <% } else { %>
+                <h3 class="noLikes">No Liked Movies</h3>
+            <% } %>
+            <!-- End repeat -->
+          </div>
+        </div>
+
+        <!-- WATCHED LIST MOVIES -->
+        <div class="watchedList section">
+          <div class="watchListTitle">
+            <h3>Watchlist</h3>
+            <a href="/allWatchList">ALL</a>
+          </div>
+          <div class="moviesGrid">
+            <% if (watchList && watchList.length > 0) { %>
+              <% watchList.forEach (list =>  {  %>
+                <div class="movieCard" data-movie-id = "<%= list.movieID %>">
+                  <!-- The content will be dynamically filled -->
+                  <a href="/films/<%= list.movieID %>">
+                  <!-- PlaceHolder content, it will be filled by JS after fetching movie details -->
+                  </a>
+                </div>
+              <% }) %>
+            <% } else { %>
+              <h3 class="noWatchlist">No movies added to watchlist</h3>
+            <% } %>
+          </div>
+        </div>
+
+        <!-- RECENTLY REVIEWED MOVIES -->       
+        <div class="recentReviews">
+          <div class="likesTitle">
+            <h3>Recent Reviews</h3>
+            <a href="/allReviewedMovies">ALL</a>
+          </div>
+          <ul class="reviewList">
+            <% if (userReviews && userReviews.length > 0) { %>
+              <% userReviews.forEach (review => { %>
+                <li class="reviewItem" data-movie-id = "<%= review.movieID %>">
+                  <!-- the content will be dynamiclly filled -->
+                  <a href="/films/<%= review.movieID %>">
+                  <!-- PlaceHolder content, it will be filled by JS after fetching movie details -->
+                  </a>
+                  <div class="reviewContent">
+                    <h4 class="movieTitle"></h4>
+                    <div class="star-rating">
+                      <% for (let i = 1; i <= 5; i++) { %>
+                          <% if (i <= review.rating) { %>
+                              <span class="selected">★</span>
+                          <% } else { %>
+                              <span>☆</span>
+                          <% } %>
+                      <% } %>
+                    </div>
+                    <p class="reviewDate"><span>Watched at: </span><%= new Date(review.createdAt).toLocaleDateString("en-US", {
+                      weekday: 'short', 
+                      year: 'numeric', 
+                      month: 'short', 
+                      day: 'numeric' 
+                      }) %>
+                    </p>
+                    <p><%= review.review %></p>
+                  </div>
+                </li>
+                <% }); %>
+              <% } else { %>
+                <h3 class="noReviews">No Reviewed Movies</h3>
+              <% } %>
+            </ul>
+        </div>  
+      </div>
+    </div>
+    
+    <script src="/js/userProfile.js"></script>
+    <%- include('../partials/footer.ejs') %>
+  </body>
+</html>

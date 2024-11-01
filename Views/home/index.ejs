@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("../partials/head.ejs") %>
+<body>
+    <%- include("../partials/nav.ejs") %>
+    <div class="homeImage">
+        <div class="homeText">
+            <% if (user) { %> 
+                <h1>Welcome to MovieMinds! Dive into your movie diary, rate your favorites, and capture your cinematic journey just for you</h1>
+                <P>Welcome Back, <span><%= user.username %></span></P>
+            <% } else { %> 
+                <h1>Welcome to MovieMinds! Dive into your movie diary, rate your favorites, and capture your cinematic journey just for you</h1>
+                <button class="signUp" onclick="displaySignUpModal()">Get Started, it's free</button>
+            <% } %>
+        </div>
+        <div class="modal" id="signupModal">
+            <div class="modalContent">
+              <span class="closeSignup">&times;</span>
+              <h2>Join Movieminds</h2>
+              <form id="signupForm" action="/signup" class="signupForm" method="POST">
+                <label for="email">Email address</label>
+                <input class="input" type="email" id="email" name="email" placeholder="Email" required>
+                
+                <label for="username">Username</label>
+                <input class="input" type="text" id="username" name="username" placeholder="Username" required>
+                
+                <label for="password">Password</label>
+                <input class="input" type="password" id="password" name="password" placeholder="Password" required>
+          
+                <!-- Checkbox for terms and captcha -->
+                <div class="form-group">
+                  <input type="checkbox" id="terms" name="terms" required>
+                  <label for="terms">I'm at least 16 years old and accept the <a href="#" class="check">Terms of Use</a></label>
+                </div>
+                <div class="form-group">
+                  <input type="checkbox" id="terms" name="terms" required>
+                  <label for="terms">i accept the <a href="#" class="check">Privacy Policy</a> and consent to the processing of my personal information in accordance with it</label>
+                </div>
+          
+                <!-- Submit button -->
+                <button type="submit" class="submit-btn">Sign Up</button>
+              </form>
+              <div id="signupError" style="color: red;"></div>
+            </div>
+        </div>          
+    </div>
+    <div id="home" class="container">
+        <h2>Now playing</h2>
+        <div class="grid">
+            <% movies.forEach(movie => { %>
+                <div class="movieBanner">
+                    <a href="/films/ <%= movie.id %>">
+                    <div class="movieFront">
+                        <img src="https://image.tmdb.org/t/p/w500<%= movie.poster_path %>" alt="<%= movie.title %>">
+                        <p class="title"><%= movie.title %></p>
+                    </div>
+                    <div class="movieBack">
+                        <h2><%= movie.title %></h2>
+                        <p><span>Release Date: </span> <%= movie.release_date %></p>
+                        <p><span>Rating: </span> <%= Math.round(movie.vote_average * 10) / 10 %> / 10</p>
+                    </div>
+                    </a>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+    
+    <script src="/js/signUp.js"></script>
+    <%- include("../partials/footer.ejs") %>
+</body>
+</html>

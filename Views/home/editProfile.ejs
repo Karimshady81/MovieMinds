@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../partials/head.ejs') %>
+<body>
+    <%- include('../partials/nav.ejs') %>
+    <div data-user = "<%= user %>">
+        <h1>Account Settings</h1>
+        <div class="movieDetails">
+            <ul class="detailLinks">
+                <li><a id="profile">PROFILE</a></li>
+                <li><a id="avatar">AVATAR</a></li>
+                <li><a id="auth">AUTH</a></li>
+            </ul>
+        </div>
+
+        <!-- The edit form -->
+        <div id="profileDetails" class="profile-container" style="display: none;">
+            <div class="profile-form">
+                <h2>Edit Profile</h2>
+                <form method="POST">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" value="<%= user.username %>" readonly>
+        
+                    <label for="givenName" id="giveName">Given Name</label>
+                    <input type="text" name="givenName" id="givenName">
+        
+                    <label for="familyName" id="familyName">Family Name</label>
+                    <input type="text" name="familyName" id="familyName">
+        
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" value=" <%= user.email %>" readonly>
+        
+                    <label for="location">Location</label>
+                    <input type="text" id="location" name="location" value="">
+        
+                    <div class="bioDetails">
+                        <div>
+                            <label for="bio">Bio</label>
+                            <textarea id="bio" name="bio"></textarea>
+                        </div>
+                        <button id="saveBTN" type="submit">Save Changes</button>
+                    </div>
+                </form>
+            </div>             
+        </div> 
+
+        <!-- The avatar form  -->        
+        <div id="avatarDetails" class="avatar-container" style="display: none;">
+            <form id="editProfileForm" action="/saveProfile" method="POST" enctype="multipart/form-data">
+                <label for="avatar">Upload Avatar:</label>
+                <input type="file" id="Avatar" name="avatar" accept="image/*">
+                <button type="submit" id="saveAvatar">Save Changes</button>
+            </form>
+        </div>
+
+        <!-- The password form -->
+        <div id="passwordDetails" class="password-container" style="display: none;">
+            <h2>Change password</h2>
+            <form action="/saveProfile">
+                <label for="password">Current password</label>
+                <input type="password" name="currentPassword" id="currentPassword">
+                <label for="newPassword">New password</label>
+                <input type="password" name="newPassword" id="newPassword">
+                <label for="confirmPassword">Confirm password</label>
+                <input type="password" name="confirmPassword" id="confirmPassword">
+                <button type="submit" id="savePassword">Save Changes</button>
+            </form>
+        </div>
+    </div>
+    
+    <script src="/js/editProfile.js"></script>
+    <%- include('../partials/footer.ejs') %>
+</body>
+</html>

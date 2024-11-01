@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../partials/head.ejs') %>
+<body>
+    <%- include('../partials/nav.ejs') %>
+    <div class="watchedList section">
+        <div class="watchListTitle">
+          <h3>Watchlist</h3>
+        </div>
+        <div class="watchListGrid">
+          <!-- Repeat this block for each liked film -->
+            <% if (watchList && watchList.length > 0) { %>
+              <% watchList.forEach (list =>  {  %>
+                <div class="movieCard" data-movie-id = "<%= list.movieID %>">
+                  <!-- The content will be dynamically filled -->
+                  <a href="/films/<%= list.movieID %>">
+                  <!-- PlaceHolder content, it will be filled by JS after fetching movie details -->
+                  </a>
+                  <p class="likedAt"><span>Added to watchlist:</span> <%= new Date(list.updatedAt).toLocaleDateString("en-US", {
+                    weekday: 'short', 
+                    year: 'numeric', 
+                    month: 'short', 
+                    day: 'numeric' 
+                }) %></p>
+                </div>
+              <% }) %>
+            <% } else { %>
+              <h3 class="noWatchlist">No movies added to watchlist</h3>
+            <% } %>
+        </div>
+      </div>
+
+      <%- include('../partials/footer.ejs') %>
+      <script src="/js/userProfile.js"></script>
+</body>
+</html>

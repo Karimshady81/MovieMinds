@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Prata&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap');
+
+
+body{
+    margin: 0 auto;
+    padding: 0 20px;
+    max-width: 80%;
+    color: hsl(208, 11%, 46%);
+    background-color: hsl(210, 21%, 13%);
+    font-family: "Prata", serif;
+}
+
+h2,li,p{
+   color: hsl(208, 11%, 46%);
+   font-family: "Prata", serif;
+   font-weight: 600;
+}
+
+span {
+   color: hsl(36, 80%, 58%);
+}
+
+.reviewsContainer {
+   display: flex;
+   flex-direction: row-reverse;
+   max-width: 100%;
+}
+
+.moviePoster {
+   width: 25%;
+}
+
+.moviePoster img {
+   width: 100%; /* Adjust to fit your poster size */
+   border-radius: 10px; /* For rounded corners */
+   box-shadow: -4px 4px 6px 2px rgb(255 255 255 / 20%)
+}
+
+.reviewHeader{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid #b58225;
+}
+
+.reviewHeader a{
+    text-decoration: none;
+}
+
+.reviewHeader h2:hover{
+    color: hsl(208, 11%, 66%);
+}
+
+ .reviews{
+   width: 100%;
+   padding: 50px 0;
+ }
+
+ .reviewContainer{
+    width: 80%;
+    margin: auto;
+ }
+
+ .review{
+    display: flex;
+    font-size: 1.5rem;
+    flex-direction: column;
+    border-bottom: 2px solid #b58225;
+    padding: 15px 0;
+ }
+
+ .profileSection{
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    gap: 20px;
+    padding-bottom: 20px;
+ }
+
+ .profileSection p {
+    color: hsl(0, 0%, 100%);
+    display: inline;
+ }
+
+ .profileImg{
+    width: 5%;
+    border-radius: 100%;
+ }
+
+ .reviewSection{
+    width: 85%;
+    margin: auto;
+    padding-bottom: 15px;
+ }
+
+ .reviewSection p {
+    line-height: 160%;
+    line-height: 160%;
+    font-family: "Gowun Batang", serif;
+    font-weight: 700;
+    font-style: normal;
+ }

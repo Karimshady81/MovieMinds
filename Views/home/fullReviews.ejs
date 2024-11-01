@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include("../partials/head.ejs") %>
+<body>
+    <%- include("../partials/nav.ejs") %>
+    <div class="reviewsContainer">
+      <div class="moviePoster">
+        <img src="https://image.tmdb.org/t/p/w500<%= movie.poster_path %>" alt="<%= movie.title %>">
+      </div>
+      <div class="reviews">
+          <div class="reviewHeader">
+            <h1>Popular reviews</h1>
+          </div>
+          <% review.forEach (review => { %>
+          <div class="reviewContainer">
+            <div class="review">
+              <div class="profileSection">
+                <% if (review.avatar === 'https://image.tmdb.org/t/p/w45/null') {%>
+                    <i class="fa-solid fa-user fa-2xl"></i>
+                <% } else {%>
+                    <img src="<%= review.avatar %>" alt="Avatar" class="profileImg">
+                <% } %>
+                <span>Review by: <p><%= review.author %></p></span>
+                <span>Rating: <p><%= review.rating %> / 10</p></span>
+              </div>
+              <div class="reviewSection">
+                <p><%- review.content %></p>
+              </div>
+            </div>
+          </div>
+          <% }) %>
+        </div>
+    </div>
+    <%- include("../partials/footer.ejs") %>
+</body>
+</html>
