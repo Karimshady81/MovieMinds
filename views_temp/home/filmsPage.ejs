@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include ("../partials/header.ejs") %>
+<body>
+    <%- include ("../partials/nav.ejs") %>
+    <!-- ----------------------------------TOTAL FILMS SECTION ----------------------------------->
+    <h2 class="films-Title">All Films</h2>
+    <div id="totalMovies" class="total-Films">
+        
+    </div>
+    <!-- ----------------------------------FILMS SECTION ----------------------------------------->
+    <div id="allFilms" class="films-Container">
+            <!-- Container for all the movies that will be displayed -->
+            <div id="allFilmsList" class="films-Grid">
+                <!-- this is where the JS fetch will place the data recieved from the server in the EJS file -->
+            </div>
+            <div>
+                <button id="showMoreBTN" class="show-More">Show more</button>
+            </div>
+    </div>
+
+    <!-- This is the script thats responsible for fetching all the movies and display it -->
+    <script src="/JS/filmsJS/fetchAllMovies.js"></script>
+    <script src="/JS/filmsJS/fetchTotalNoMovies.js"></script>
+    <%- include ("../partials/footer.ejs") %>
+</body>
+</html>
