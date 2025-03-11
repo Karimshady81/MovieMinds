@@ -19,6 +19,23 @@ router.post('/signup', async (req,res) => {
     const { username, email, password } = req.body
     
     try{
+        //Check if the username already exists
+        const existingUser = await User.findOne({ username });
+        const existingEmail = await User.findOne({ email });
+
+        if (existingUser){
+            return res.status(400).json({ message: 'Username already exists' });
+        }
+        
+        if (existingEmail){
+            return res.status(400).json({ message: 'Email already exists' });
+        }
+
+        //Check if all the fields are valid
+        if (!username || !email || !password) {
+            return res.status(400).json({ message: 'All fields are required' });
+        }
+
         //Hash the password
         const hashedPassword = await bcrypt.hash(password,10);
 
