@@ -19,23 +19,6 @@ router.post('/signup', async (req,res) => {
     const { username, email, password } = req.body
     
     try{
-        //Check if the username already exists
-        const existingUser = await User.findOne({ username });
-        const existingEmail = await User.findOne({ email });
-
-        if (existingUser){
-            return res.status(400).json({ message: 'Username already exists' });
-        }
-        
-        if (existingEmail){
-            return res.status(400).json({ message: 'Email already exists' });
-        }
-
-        //Check if all the fields are valid
-        if (!username || !email || !password) {
-            return res.status(400).json({ message: 'All fields are required' });
-        }
-
         //Hash the password
         const hashedPassword = await bcrypt.hash(password,10);
 
@@ -52,7 +35,7 @@ router.post('/signup', async (req,res) => {
                 return res.status(500).json({ message: 'Error logging in the user after signUp' });
             }
             //Respond to the client
-            res.status(201).json({ message: 'User created successfully', user: newUser });
+            res.status(200).json({ message: 'User created successfully', user: newUser });
         })
     }
     catch(error){
