@@ -1,0 +1,30 @@
+GET http://localhost:3000/now-playing
+Accept: application/json
+
+###
+
+POST http://localhost:3000/signup
+Accept: application/json
+
+{
+    "username": "karim",
+    "email": "karim@gmail.com",
+    "password": "1Q2w3e4r5t",
+}
+
+###
+GET http://localhost:3000/all-films
+Accept: application/json
+
+###
+GET http://localhost:3000/total-films
+
+###
+GET http://localhost:3000/film-details/939243
+
+###
+GET http://localhost:3000/film-details/1064213/reviews
+
+###
+GET http://localhost:3000/searched-movies?query=avengers
+

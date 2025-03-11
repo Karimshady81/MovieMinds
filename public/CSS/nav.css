@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Prata&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Prata", serif;
+}
+
+nav{
+    display: flex;
+    width: 100%;
+    padding: 15px 0px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav img{
+    width: 300px;
+    object-fit: contain;
+}
+
+ul{
+    display: flex;
+    flex-direction: row;
+}
+
+.new-Links li{
+    list-style: none;
+    margin: 15px;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+.new-Links a{
+    text-decoration: none;
+    color: hsl(208, 11%, 46%);
+    cursor: pointer;
+}
+
+.new-Links a:hover {
+    color: hsl(208, 11%, 26%);
+}
+
+.new-Links a.active{
+    text-decoration: none;
+    color: hsl(36, 80%, 58%);
+    cursor: pointer;
+}
+
+.sign-In-Btn:hover {
+    color: hsl(208, 11%, 26%);
+}
+
+/* SIGN-IN SECTION */
+.sign-In {
+    display: none;
+    width: 100%;
+}
+
+.sign-In-Container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sign-In-Form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.name-label {
+    font-size: 1.5rem;
+    margin: 0 5px;
+    color: hsl(208, 11%, 46%);
+}
+
+.password-label {
+    font-size: 1.5rem;
+    margin: 0 5px;
+    color: hsl(208, 11%, 46%);
+}
+
+.close-Sign-In {
+    font-size: 2rem;
+    color: hsl(0, 0%, 67%);
+    cursor: pointer;
+}
+
+.close-Sign-In:hover {
+    color: hsl(0, 0%, 97%);
+}
+
+.submit-Btn {
+    background-color: hsl(136, 80%, 58%);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 15px;
+}
+
+.submit-Btn:hover {
+    background-color: hsl(136, 80%, 48%);
+}
+
+.sign-In-Input{
+    padding: 10px 10px;
+    border-radius: 10px;
+}
+
+.error-Message {
+    font-size: 1.2rem;
+    display: flex;
+    border: 2px solid;
+    border-radius: 10px;
+    background-color: hsl(36, 80%, 58%);
+    width: 100%;
+    justify-content: center;
+    color: hsl(208deg 100% 95.51%);
+}
+
+.error-Message p {
+    color: white;
+    font-weight: 400;
+}
+
+.fa {
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.dropdown-Content {
+    display: none;
+    position: absolute;
+    background-color: hsl(210, 21%, 23%);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-Content a {
+    color: hsl(208, 11%, 56%);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-Content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown-Container:hover .dropdown-Content {
+    display: block;
+}
+
+/* SEARCH STYLE */
+.search-Bar{
+    display: flex;
+    align-items: center;
+    background-color: white;
+    padding: 5px;
+    border-radius: 20px;
+}
+
+.search-Bar input{
+    border: none;
+    padding: 10px;
+    border-radius: 20px;
+    outline: none;
+}
+
+/* Remove blue background on autocomplete */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+    background-color: white !important;
+    color: black !important;
+    -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+    transition: background-color 5000s ease-in-out 0s; /* Delays autofill styling */
+}
+
+.search-Bar button{
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    border: none;
+    color: hsl(0, 0%, 100%);
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: white;
+}
+
+button img{
+    margin-right: 8px;
+    width: 20px;
+    height: 20px;
+}

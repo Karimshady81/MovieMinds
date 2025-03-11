@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Prata&display=swap');
+
+h2,li,p{
+    color: hsl(208, 11%, 46%);
+    font-family: "Prata", serif;
+    font-weight: 600;
+}
+
+body{
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+    max-width: 80%;
+    background-color: hsl(210, 21%, 13%);
+    font-family: "Prata", serif;
+}
+
+/* *******************TOTAL FILMS SECTION********************** */
+.total-Films {
+    margin-top: 8px;
+    border: 5px solid rgb(104,118,130);
+    background-color: rgb(104,118,130);
+    border-radius: 5px;
+}
+
+.total-Films p{
+    color: white;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.films-Title{
+    border-bottom: 1px solid #b58225;
+}
+/* *******************FILMS SECTION********************** */
+.films-Container{
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    padding: 20px;
+    gap: 20px;
+}
+
+.films-Grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(250px,1fr));
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
+}
+  
+.films-Grid img{
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0 4px 6px rgb(0,0,0,0.2);
+}
+
+.films-Grid .movie-Banner {
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: hsl(209, 11%, 20%);
+    box-shadow: -4px 3px 7px rgb(255 255 255 / 48%);
+    cursor: pointer;
+}
+
+.movie-Banner {
+    position: relative;
+    width: 100%;
+    height: 460px;
+    perspective: 1000px;
+    text-align: center;
+}
+
+.movie-Banner a {
+    color: hsl(208deg 25.1% 95.99%);
+}
+
+.movie-Banner p{
+    font-size: 1.2rem;
+    font-family: "Prata", serif;
+    font-weight: 400;
+    color: white;
+}
+
+.movie-Banner h2{
+    color: hsl(208deg 25.1% 95.99%);
+}
+
+.movie-Front, .movie-Back {
+    position: absolute;
+    width: 91%;
+    height: 81%;
+    backface-visibility: hidden;
+    transition: transform 0.8s ease-in-out;
+}
+
+.movie-Front {
+    z-index: 2;
+    transform: rotateY(0deg);  /* Front side */
+}
+
+.movie-Front img{
+    width: 250px;
+    margin-right: 30px;
+}
+
+.movie-Back {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+    z-index: 1;
+    transform: rotateY(180deg);  /* Back side */
+}
+
+.movie-Back span {
+    color: hsl(36, 80%, 58%);
+}
+
+.movie-Banner:hover .movie-Front {
+    transform: rotateY(180deg);  /* Flip front to back */
+}
+
+.movie-Banner:hover .movie-Back {
+    transform: rotateY(0deg);  /* Flip back to front */
+}
+
+.show-More{
+    background-color: #37474f; /* Dark theme background */
+    color: hsl(208, 11%, 66%); /* Text color matching your style */
+    border: none;
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 10px; /* Rounded corners */
+    font-size: 16px; /* Text size */
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+}
+
+.show-More:hover{
+    background-color: hsl(208, 11%, 55%); /* Slightly lighter on hover */
+    color: #ffffff; /* Change text color on hover */
+    transform: translateY(-3px); /* Slight lift effect */
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4); /* Enhanced shadow on hover */
+}
+
+.show-More:active{
+    transform: translateY(0); /* Reset on click */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); /* Reset shadow on click */
+}

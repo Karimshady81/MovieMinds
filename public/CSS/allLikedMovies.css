@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Prata&display=swap');
+
+body{
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+    max-width: 80%;
+    background-color: hsl(210, 21%, 13%);
+    font-family: "Prata", serif;
+}
+
+.liked-Movies-Grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.movie-Card {
+  text-align: center;
+  border-radius: 10px;
+  background-color: #2c2c2c;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.movie-Card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.movie-Poster {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.movie-Title {
+  font-size: 16px;
+  color: #ffc107; /* Gold color */
+  margin-top: 10px;
+}
+
+.review-Date {
+  font-size: 15px !important;
+  color: #b5b5b5 !important;
+  margin-top: 5px;
+}
+

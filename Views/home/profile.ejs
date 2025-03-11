@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include ("../partials/header.ejs") %>
+<body>
+    <%- include ("../partials/nav.ejs") %>
+    <div class="profile-Container">
+        <!-- PROFILE DETAILS -->
+        <div id="profileDetails" class="profile-details">
+            
+        </div>
+        <div class="profile-Sections">
+            <!-- RECENT LIKED FILMS -->
+             <div class="recent-Likes section">
+                <div class="likes-Title"> 
+                    <h3>Recent Likes</h3>
+                    <a href="/allLikedMovies">ALL</a>
+                </div>
+                <div class="liked-Card">
+                    
+                </div>
+             </div>
+             <!-- WATCHLIST -->
+             <div class="watchlist section">
+                <div class="watchlist-Title"> 
+                    <h3>Watchlist</h3>
+                    <a href="/allWatchListMovies">ALL</a>
+                </div>
+                <div class="watchlist-Card">
+
+                </div>
+             </div>
+             <!-- REVIEWS -->
+             <div class="recent-Reviews section">
+                <div class="review-Title"> 
+                    <h3>Reviews</h3>
+                    <a href="/allReviewedMovies">ALL</a>
+                </div>
+                <ul class="review-List">
+                    
+                </ul>
+             </div>
+        </div>
+    </div>
+    <%- include ("../partials/footer.ejs") %>
+    <script src="/JS/profileJS/fetchProfileDetails.js"></script>
+</body>
+</html>

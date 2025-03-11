@@ -1,0 +1,263 @@
+@import url('https://fonts.googleapis.com/css2?family=Prata&display=swap');
+
+h2,li,p{
+    color: hsl(208, 11%, 46%);
+    font-family: "Prata", serif;
+    font-weight: 600;
+}
+
+body{
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+    max-width: 80%;
+    background-color: hsl(210, 21%, 13%);
+    font-family: "Prata", serif;
+}
+
+/* ******************************************** */
+/* THE INTRO SECTION */
+.home-Img {
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    height: 80vh;
+    background-image: url('/images/movieHome.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    mask-image: radial-gradient(circle, white 50%, transparent 80%);
+}
+
+.home-Img::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.5), transparent, rgba(0, 0, 0, 0.5));
+    z-index: 1; /* Ensures it's above the image */
+}
+
+.home-Text{
+    display: flex;
+    text-align: center;
+    color: white;
+    margin: 0 auto;
+    max-width: 600px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    padding: 20px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.home-Text p {
+  margin-top: 10px;
+  font-size: 2.5rem;
+  line-height: 1.5;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgb(0, 0, 0);
+}
+
+.home-Text h1{
+    font-size: 2.5rem;
+    line-height: 1.5;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgb(0, 0, 0); /* Adds subtle text shadow */
+}
+
+.home-Username{
+    color: hsl(36, 80%, 58%);
+}
+
+/* ******************************************** */
+/* THE SIGN UP BUTTON */
+.sign-Up-Btn {
+    z-index: 10;
+    width: 50%;
+    padding: 9px 40px;
+    margin: 15px;
+    background-color: hsl(36, 80%, 58%);
+    color: hsl(0, 0%, 0%);
+    border-radius: 25px;
+    font-size: 1.2rem;
+    box-shadow: 1px -1px 12px 13px hsl(0, 0%, 100%);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.sign-Up-Btn:hover {
+    color: hsl(0, 0%, 25%);
+}
+
+/* ******************************************** */
+/* THE SIGN UP MODAL */
+.sign-Up-Modal {
+    display: none; /* Hidden by default */
+    position: absolute;
+    z-index: 10 !important;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.75); /* Dark background */
+}
+  
+.check{
+  color: hsl(36, 80%, 58%);
+}
+
+.modal-Content {
+    margin: 10% auto;
+    padding: 20px;
+    width: 40%;
+    height: 75%;
+    color: white;
+    background-color: hsl(210, 21%, 13%);
+    border-radius: 10px;
+    box-shadow: -3px -2px 16px 11px rgb(255 255 255 / 48%);
+  }
+  
+  .modal-Content h2 {
+    margin-left: 0;
+    margin-bottom: 10px;
+  }
+
+  .close-Signup {
+    font-size: 1.5rem;
+    color: #aaa;
+    cursor: pointer;
+    float: right;
+  }
+
+  .sign-Up-Form {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+  }
+  
+  .submit-Btn {
+    background-color: hsl(136, 80%, 58%);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .submit-Btn:hover {
+    background-color: hsl(136, 80%, 50%);
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  .input{
+    padding: 10px 10px;
+    border-radius: 10px;
+  }
+
+/* ******************************************** */
+/* THE PLAYING NOW SECTION */
+
+.home-Container{
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    padding: 20px;
+    gap: 20px;
+}
+
+.home-Grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(250px,1fr));
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
+}
+  
+.home-Grid img{
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0 4px 6px rgb(0,0,0,0.2);
+}
+
+.home-Grid .movie-Banner {
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: hsl(209, 11%, 20%);
+    box-shadow: -4px 3px 7px rgb(255 255 255 / 48%);
+    cursor: pointer;
+}
+
+.movie-Banner {
+    position: relative;
+    width: 100%;
+    height: 460px;
+    perspective: 1000px;
+    text-align: center;
+}
+
+.movie-Banner a {
+    color: hsl(208deg 25.1% 95.99%);
+}
+
+.movie-Banner p{
+    font-size: 1.2rem;
+    font-family: "Prata", serif;
+    font-weight: 400;
+    color: white;
+}
+
+.movie-Banner h2{
+    color: hsl(208deg 25.1% 95.99%);
+}
+
+.movie-Front, .movie-Back {
+    position: absolute;
+    width: 91%;
+    height: 81%;
+    backface-visibility: hidden;
+    transition: transform 0.8s ease-in-out;
+}
+
+.movie-Front {
+    z-index: 2;
+    transform: rotateY(0deg);  /* Front side */
+}
+
+.movie-Front img{
+    width: 250px;
+    margin-right: 30px;
+}
+
+.movie-Back {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+    z-index: 1;
+    transform: rotateY(180deg);  /* Back side */
+}
+
+.movie-Back span {
+    color: hsl(36, 80%, 58%);
+}
+
+.movie-Banner:hover .movie-Front {
+    transform: rotateY(180deg);  /* Flip front to back */
+}
+
+.movie-Banner:hover .movie-Back {
+    transform: rotateY(0deg);  /* Flip back to front */
+}
+
+
+
