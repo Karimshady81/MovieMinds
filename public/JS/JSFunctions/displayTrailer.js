@@ -1,29 +1,35 @@
 //This is done this way to be able to access the other elements from another JS we have a dispatchEvent "trailerReady" to tell us that the elements exist in the DOM
-document.addEventListener('trailerReady', () => {
+// Define globally
+function displayTrailer() {
     const trailerModal = document.getElementById('trailerModal');
+    if (trailerModal) trailerModal.style.display = 'block';
+  }
+  
+  // Register globally
+  window.displayTrailer = displayTrailer;
+  
+  // Define video handling AFTER trailer is loaded
+  document.addEventListener('trailerReady', () => {
     const closeButton = document.querySelector('.close-Trailer');
+    const trailerModal = document.getElementById('trailerModal');
     const videoPlayer = document.getElementById('videoPlayer');
-
-    function displayTrailer() {
-        trailerModal.style.display = 'block';
-    }
-
+  
     function stopVideo() {
-        videoPlayer.src = videoPlayer.src; // Reset the video
+      if (videoPlayer) videoPlayer.src = videoPlayer.src;
     }
-
-    closeButton.onclick = () => {
+  
+    if (closeButton) {
+      closeButton.onclick = () => {
         trailerModal.style.display = 'none';
         stopVideo();
-    };
-
+      };
+    }
+  
     window.onclick = (event) => {
-        if (event.target === trailerModal) {
-            trailerModal.style.display = 'none';
-            stopVideo();
-        }
+      if (event.target === trailerModal) {
+        trailerModal.style.display = 'none';
+        stopVideo();
+      }
     };
-
-    // Attach the function to the global scope
-    window.displayTrailer = displayTrailer;
-});
+  });
+  

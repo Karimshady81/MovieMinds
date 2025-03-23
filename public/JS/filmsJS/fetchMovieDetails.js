@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // console.log("User Actions:", userActions);
             // console.log(user);
             // console.log(movie);
-            console.log(trailer);
+            // console.log(trailer);
             // console.log(credits);
             // console.log(provider);
             // console.log(reviews);
@@ -215,101 +215,102 @@ document.addEventListener('DOMContentLoaded', () => {
                 else {
                     reviewInputContainer.innerHTML = `<button id="reviewLog" class="review-Log">Review or Log...</button>`
                 }
+
+                //Action for displaying the review box
+                document.getElementById('reviewLog').addEventListener("click", () => {
+                    document.querySelector('.review-Form').classList.add('show-review');
+                    document.getElementById('reviewFormBox').innerHTML = `
+                        <div class="review-Modal-Content">
+                            <span class="close">&times;</span>
+                            <div class="movie-Form-Poster">
+                                <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
+                            </div>
+                            <div id="reviewForm" class="review-Form-Content">
+                                <h3>I watched...</h3>
+                                <h1>${movie.title}</h1>
+                                <p>Released: <span>${movie.release_date}</span></p>
+                                <p style="color: hsl(208, 11%, 46%);">Leave your review: </p>
+                                <p id="reviewMessageRes" style=" color: hsl(36, 80%, 58%);"></p>
+                                <textarea id="reviewTextArea" name="reviewTextArea">${userActions.review || ''}</textarea>
+                                <div class="star-Rating-Film" id="starRating-${movie.id}">
+                                        ${[1, 2, 3, 4, 5].map(num => 
+                                            `<span class="star" data-value="${num}" 
+                                            ${userActions.rating >= num ? 'style="color: gold;"' : ''}>★</span>`
+                                        ).join('')}
+                                </div>
+                                <div class="review-BTN">
+                                    <button id="deleteReview" class="delete-BTN">delete</button>
+                                    <button type="submit" id="saveReview" class="save-BTN">save</button>
+                                </div>
+                            </div>
+                        </div>
+                        `
+                        //Handling the review sumbmission
+                        document.getElementById('saveReview').addEventListener('click', () => {
+                            const messageResponse = document.getElementById('reviewMessageRes');
+            
+                            fetch('/addReview', {
+                                method: 'POST',
+                                headers: {
+                                    "Content-Type": "application/json",
+                                },
+                                body: JSON.stringify({
+                                    movieId: movie.id,
+                                    review: document.getElementById('reviewTextArea').value
+                                })
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                messageResponse.innerHTML = data.message 
+                            })
+                            .catch(error => {
+                                console.error("Error adding review",error)
+                            })
+                        })
+    
+                        document.getElementById('deleteReview').addEventListener('click', () => {
+                            const messageResponse = document.getElementById('reviewMessageRes');
+            
+                            fetch('/removeReview', {
+                                method: 'POST',
+                                headers: {
+                                    "Content-Type": "application/json",
+                                },
+                                body: JSON.stringify({
+                                    movieId: movie.id,
+                                })
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (messageResponse) {
+                                    messageResponse.innerHTML = data.message; // Display response message
+                                }                     
+                                
+                                document.getElementById('reviewTextArea').value = '';
+                            })
+                            .catch(error => {
+                                console.error("Error adding review",error)
+                            })
+                        })
+                })            
+    
+    
+                
+                document.addEventListener("click", (event) => {
+                    const reviewForm = document.querySelector('.review-Form');
+                    const reviewBox = document.querySelector('.review-Modal-Content');
+                    const closeBTN = document.querySelector('.close');
+    
+                    closeBTN.onclick = () => {
+                        reviewForm.classList.remove('show-review');
+                    }
+                
+                    // Check if the clicked element is outside the modal
+                    if (reviewForm.classList.contains('show-review') && !reviewBox.contains(event.target) && event.target !== document.getElementById('reviewLog')) {
+                        reviewForm.classList.remove('show-review');
+                    }
+                });
             }
-
-            //Action for displaying the review box
-            document.getElementById('reviewLog').addEventListener("click", () => {
-                document.querySelector('.review-Form').classList.add('show-review');
-                document.getElementById('reviewFormBox').innerHTML = `
-                    <div class="review-Modal-Content">
-                        <span class="close">&times;</span>
-                        <div class="movie-Form-Poster">
-                            <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
-                        </div>
-                        <div id="reviewForm" class="review-Form-Content">
-                            <h3>I watched...</h3>
-                            <h1>${movie.title}</h1>
-                            <p>Released: <span>${movie.release_date}</span></p>
-                            <p style="color: hsl(208, 11%, 46%);">Leave your review: </p>
-                            <p id="reviewMessageRes" style=" color: hsl(36, 80%, 58%);"></p>
-                            <textarea id="reviewTextArea" name="reviewTextArea">${userActions.review || ''}</textarea>
-                            <div class="star-Rating-Film" id="starRating-${movie.id}">
-                                    ${[1, 2, 3, 4, 5].map(num => 
-                                        `<span class="star" data-value="${num}" 
-                                        ${userActions.rating >= num ? 'style="color: gold;"' : ''}>★</span>`
-                                    ).join('')}
-                            </div>
-                            <div class="review-BTN">
-                                <button id="deleteReview" class="delete-BTN">delete</button>
-                                <button type="submit" id="saveReview" class="save-BTN">save</button>
-                            </div>
-                        </div>
-                    </div>
-                    `
-                    //Handling the review sumbmission
-                    document.getElementById('saveReview').addEventListener('click', () => {
-                        const messageResponse = document.getElementById('reviewMessageRes');
-        
-                        fetch('/addReview', {
-                            method: 'POST',
-                            headers: {
-                                "Content-Type": "application/json",
-                            },
-                            body: JSON.stringify({
-                                movieId: movie.id,
-                                review: document.getElementById('reviewTextArea').value
-                            })
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            messageResponse.innerHTML = data.message 
-                        })
-                        .catch(error => {
-                            console.error("Error adding review",error)
-                        })
-                    })
-
-                    document.getElementById('deleteReview').addEventListener('click', () => {
-                        const messageResponse = document.getElementById('reviewMessageRes');
-        
-                        fetch('/removeReview', {
-                            method: 'POST',
-                            headers: {
-                                "Content-Type": "application/json",
-                            },
-                            body: JSON.stringify({
-                                movieId: movie.id,
-                            })
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            if (messageResponse) {
-                                messageResponse.innerHTML = data.message; // Display response message
-                            }                     
-                            
-                            document.getElementById('reviewTextArea').value = '';
-                        })
-                        .catch(error => {
-                            console.error("Error adding review",error)
-                        })
-                    })
-            })            
-
-            
-            document.addEventListener("click", (event) => {
-                const reviewForm = document.querySelector('.review-Form');
-                const reviewBox = document.querySelector('.review-Modal-Content');
-                const closeBTN = document.querySelector('.close');
-
-                closeBTN.onclick = () => {
-                    reviewForm.classList.remove('show-review');
-                }
-            
-                // Check if the clicked element is outside the modal
-                if (reviewForm.classList.contains('show-review') && !reviewBox.contains(event.target) && event.target !== document.getElementById('reviewLog')) {
-                    reviewForm.classList.remove('show-review');
-                }
-            });
 
             //The Section for the stars rating 
             const stars = document.querySelectorAll("#starRating span");
