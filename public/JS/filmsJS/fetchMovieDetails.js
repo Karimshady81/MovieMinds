@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // console.log("User Actions:", userActions);
             // console.log(user);
             // console.log(movie);
-            // console.log(trailer);
+            console.log(trailer);
             // console.log(credits);
             // console.log(provider);
             // console.log(reviews);
@@ -208,11 +208,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             //Section for the users review
             const reviewInputContainer = document.querySelector('.review-Input');
-            if (userActions.review) {
-                reviewInputContainer.innerHTML = `<button id="reviewLog" class="review-Log">Edit Review</button>`
-            }
-            else {
-                reviewInputContainer.innerHTML = `<button id="reviewLog" class="review-Log">Review or Log...</button>`
+            if (reviewInputContainer){
+                if (userActions.review) {
+                    reviewInputContainer.innerHTML = `<button id="reviewLog" class="review-Log">Edit Review</button>`
+                }
+                else {
+                    reviewInputContainer.innerHTML = `<button id="reviewLog" class="review-Log">Review or Log...</button>`
+                }
             }
 
             //Action for displaying the review box
